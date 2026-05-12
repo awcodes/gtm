@@ -5,6 +5,8 @@
 
 Easy integration of Google Tag Manager into your Laravel application.
 
+<!-- [docs_start] -->
+
 ## Installation
 
 You can install the package via composer:
@@ -48,6 +50,8 @@ The `enabled` attribute is optional, but can be used to control the tags integra
 <!-- Should be placed after the opening body tag -->
 <x-gtm::no-script :enabled="$enabled" />
 ```
+
+<!-- [docs_end] -->
 
 ## Testing
 
