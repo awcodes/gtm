@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 it('displays gtm tags', function () {
     $view = $this->blade('<x-gtm :enabled="$enabled"/>', ['enabled' => true]);
 

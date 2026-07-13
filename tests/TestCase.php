@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Awcodes\Gtm\Tests;
 
 use Awcodes\Gtm\GtmServiceProvider;
@@ -10,13 +12,6 @@ class TestCase extends Orchestra
 {
     use InteractsWithViews;
 
-    protected function getPackageProviders($app): array
-    {
-        return [
-            GtmServiceProvider::class,
-        ];
-    }
-
     public function getEnvironmentSetUp($app): void
     {
         $app['config']->set('gtm.id', 'GTM-XXXXXX');
@@ -26,5 +21,12 @@ class TestCase extends Orchestra
             ...$app['config']->get('view.paths'),
             __DIR__ . '/resources/views',
         ]);
+    }
+
+    protected function getPackageProviders($app): array
+    {
+        return [
+            GtmServiceProvider::class,
+        ];
     }
 }
