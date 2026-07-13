@@ -21,12 +21,14 @@
         "spatie/laravel-package-tools": "^1.13.5"
     },
     "require-dev": {
+        "larastan/larastan": "^3.0",
         "laravel/pint": "^1.0",
-        "nunomaduro/collision": "^9.0|^8.0",
-        "orchestra/testbench": "^10.0|^9.0",
-        "pestphp/pest": "^3.0",
-        "pestphp/pest-plugin-arch": "^3.3",
-        "pestphp/pest-plugin-laravel": "^3.0",
+        "nunomaduro/collision": "^8.0",
+        "orchestra/testbench": "^9.0|^10.0|^11.0",
+        "pestphp/pest": "^4.0",
+        "pestphp/pest-plugin-arch": "^4.0",
+        "pestphp/pest-plugin-laravel": "^4.0",
+        "rector/rector": "^2.0",
         "spatie/laravel-ray": "^1.26"
     },
     "autoload": {
@@ -40,8 +42,19 @@
         }
     },
     "scripts": {
-        "pint": "vendor/bin/pint",
-        "test": "vendor/bin/pest"
+        "post-autoload-dump": "@php ./vendor/bin/testbench package:discover --ansi",
+        "lint": "pint",
+        "refactor": "rector",
+        "test:lint": "pint --test",
+        "test:refactor": "rector --dry-run",
+        "test:types": "phpstan analyse",
+        "test:unit": "pest",
+        "test": [
+            "@test:refactor",
+            "@test:lint",
+            "@test:types",
+            "@test:unit"
+        ]
     },
     "config": {
         "sort-packages": true,
