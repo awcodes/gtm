@@ -15,7 +15,7 @@ class TestCase extends Orchestra
     public function getEnvironmentSetUp($app): void
     {
         $app['config']->set('gtm.id', 'GTM-XXXXXX');
-        $app['config']->set('gtm.active', true);
+        $app['config']->set('gtm.enabled', true);
 
         $app['config']->set('view.paths', [
             ...$app['config']->get('view.paths'),
