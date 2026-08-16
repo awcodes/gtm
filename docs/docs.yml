@@ -1,0 +1,8 @@
+version: 1
+
+title: Google Tag Manager
+
+navigation:
+  - index
+  - installation
+  - usage
