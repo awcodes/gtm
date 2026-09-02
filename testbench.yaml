@@ -1,0 +1,17 @@
+laravel: '@testbench'
+
+workbench:
+  start: '/'
+  install: false
+  health: false
+  discovers:
+    web: true
+    api: false
+    commands: false
+    components: false
+    factories: false
+    views: true
+  sync:
+    - from: storage
+      to: workbench/storage
+      reverse: true

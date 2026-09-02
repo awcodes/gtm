@@ -59,6 +59,28 @@ The `enabled` attribute is optional, but can be used to control the tags integra
 composer test
 ```
 
+## Development
+
+Install dependencies:
+
+```bash
+composer install
+```
+
+Run the test suite:
+
+```bash
+composer test
+```
+
+Start the Workbench application:
+
+```bash
+composer serve
+```
+
+The Workbench is available at `http://127.0.0.1:8000` and renders both Google Tag Manager components. Add `?enabled=0` to exercise the documented per-layout opt-out.
+
 ## Changelog
 
 Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
