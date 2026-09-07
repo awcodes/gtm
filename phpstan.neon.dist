@@ -4,7 +4,25 @@ includes:
 
 parameters:
     level: 5
+    # A baseline entry that stops matching is not a failure worth breaking CI over.
+    # phpstan resolves under prefer-stable, so an analyser bump can stop reporting an
+    # error with no change to this package — and with the default (true), the now-dead
+    # ignore turns into a hard error: "Ignored error pattern ... was not matched in
+    # reported errors". heatmap-widget's main sat red for three days that way, from an
+    # analyser bump rather than a commit.
+    #
+    # Trade-off: with this false, a stale ignore lingers silently instead of announcing
+    # itself, so baselines accumulate dead entries. That is the cheaper failure — the
+    # entries are harmless, and `--generate-baseline` clears them whenever a package is
+    # next rebaselined. Breaking CI on an unrelated dependency bump is not.
+    reportUnmatchedIgnoredErrors: false
+    # `src` is the only path every package has. phpstan hard-errors with
+    # "Path ... does not exist" on a listed directory that is absent, so extra
+    # paths are opt-in: uncomment `config` / `database` only if this package
+    # actually ships them. Most do not — roughly two thirds of the fleet has no
+    # config/ directory.
     paths:
         - src
         - config
+        # - database
     tmpDir: build/phpstan
