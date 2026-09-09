@@ -18,11 +18,26 @@ parameters:
     reportUnmatchedIgnoredErrors: false
     # `src` is the only path every package has. phpstan hard-errors with
     # "Path ... does not exist" on a listed directory that is absent, so extra
-    # paths are opt-in: uncomment `config` / `database` only if this package
-    # actually ships them. Most do not — roughly two thirds of the fleet has no
-    # config/ directory.
+    # paths are opt-in: uncomment `database` only if this package actually ships
+    # it. The `(?)` optional-path marker is accepted in `excludePaths` but not
+    # here, so a listed path has to exist.
     paths:
         - src
+        # The Testbench workbench is dev-only, but it is hand-written code that
+        # exercises this package's own public API, so it is analysed like anything
+        # else.
+        - workbench
+        # This package ships a config/ directory, so it is analysed too. There is
+        # no database/ at the repo root (only workbench/database), so that path
+        # stays out.
         - config
         # - database
+    excludePaths:
+        analyse:
+            # workbench/storage is gitignored, but it appears the moment anyone runs
+            # the workbench app and fills up with compiled Blade, which is not valid
+            # standalone PHP. CI never sees it, so without this the config passes in
+            # CI and is unusable locally. `(?)` marks the path optional so this does
+            # not itself hard-error in CI.
+            - workbench/storage (?)
     tmpDir: build/phpstan
