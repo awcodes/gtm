@@ -5,3 +5,9 @@ parameters:
 			identifier: larastan.noEnvCallsOutsideOfConfig
 			count: 2
 			path: config/gtm.php
+
+		-
+			message: '#^Parameter \#1 \$view of function view expects view\-string\|null, string given\.$#'
+			identifier: argument.type
+			count: 1
+			path: workbench/routes/web.php
