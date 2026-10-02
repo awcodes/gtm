@@ -36,6 +36,32 @@ Before submitting a pull request:
 - Check the codebase to ensure that your feature doesn't already exist.
 - Check the pull requests to ensure that another person hasn't already submitted the feature or fix.
 
+## Development
+
+Install dependencies:
+
+```bash
+composer install
+```
+
+Start the Workbench application:
+
+```bash
+composer serve
+```
+
+The Workbench is available at `http://127.0.0.1:8000` and renders both Google Tag Manager components. Add `?enabled=0` to exercise the documented per-layout opt-out.
+
+## Testing
+
+Run the full suite (Rector dry run, Pint, PHPStan and Pest):
+
+```bash
+composer test
+```
+
+Each check can also be run on its own with `composer test:refactor`, `composer test:lint`, `composer test:types` or `composer test:unit`. To apply fixes rather than just check, run `composer lint` (Pint) or `composer refactor` (Rector).
+
 ## Requirements
 
 If the project maintainer has any additional requirements, you will find them listed here.
