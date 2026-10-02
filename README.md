@@ -1,89 +1,29 @@
 # Google Tag Manager for Laravel
 
+Add Google Tag Manager to a Laravel application with two Blade components and a config file.
+
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/awcodes/gtm.svg?style=flat-square)](https://packagist.org/packages/awcodes/gtm)
 [![Total Downloads](https://img.shields.io/packagist/dt/awcodes/gtm.svg?style=flat-square)](https://packagist.org/packages/awcodes/gtm)
 
-Easy integration of Google Tag Manager into your Laravel application.
+## Documentation
 
-<!-- [docs_start] -->
+The full documentation lives at **[docs.aw.codes/gtm](https://docs.aw.codes/gtm/2.x)**.
+
+## Requirements
+
+- PHP 8.2 or higher
 
 ## Installation
-
-You can install the package via composer:
 
 ```bash
 composer require awcodes/gtm
 ```
 
-You can publish the config file with:
-
-```bash
-php artisan vendor:publish --tag="gtm-config"
-```
-
-This is the contents of the published config file:
-
-```php
-return [
-    'id' => env('GTM_ID', 'GTM-XXXXXX'),
-    'enabled' => env('GTM_ENABLED', true),
-];
-```
-
-Optionally, you can publish the views using
-
-```bash
-php artisan vendor:publish --tag="gtm-views"
-```
-
-## Usage
-
-1. Add your GTM_ID to your `.env` file
-2. Simply add the blade components to your base layout files.
-
-The `enabled` attribute is optional, but can be used to control the tags integration from blade files that extend the base layout. It accepts `true/false`. This can still be controlled globally via the `.env` file should you need to disable the integration global on different environments as well.
-
-```html
-<!-- Should be placed in the head -->
-<x-gtm::script :enabled="$enabled" />
-
-<!-- Should be placed after the opening body tag -->
-<x-gtm::no-script :enabled="$enabled" />
-```
-
-<!-- [docs_end] -->
-
-## Testing
-
-```bash
-composer test
-```
-
-## Development
-
-Install dependencies:
-
-```bash
-composer install
-```
-
-Run the test suite:
-
-```bash
-composer test
-```
-
-Start the Workbench application:
-
-```bash
-composer serve
-```
-
-The Workbench is available at `http://127.0.0.1:8000` and renders both Google Tag Manager components. Add `?enabled=0` to exercise the documented per-layout opt-out.
+Then set your container ID and, optionally, publish the config file. See [Installation](https://docs.aw.codes/gtm/2.x/installation) for those steps.
 
 ## Changelog
 
-Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
+Please see the [releases](https://github.com/awcodes/gtm/releases) for what has changed recently.
 
 ## Contributing
 
