@@ -36,15 +36,41 @@ Before submitting a pull request:
 - Check the codebase to ensure that your feature doesn't already exist.
 - Check the pull requests to ensure that another person hasn't already submitted the feature or fix.
 
+## Development
+
+Install dependencies:
+
+```bash
+composer install
+```
+
+Start the Workbench application:
+
+```bash
+composer serve
+```
+
+The Workbench is available at `http://127.0.0.1:8000` and renders both Google Tag Manager components. Add `?enabled=0` to exercise the documented per-layout opt-out.
+
+## Testing
+
+Run the full suite (Rector dry run, Pint, PHPStan and Pest):
+
+```bash
+composer test
+```
+
+Each check can also be run on its own with `composer test:refactor`, `composer test:lint`, `composer test:types` or `composer test:unit`. To apply fixes rather than just check, run `composer lint` (Pint) or `composer refactor` (Rector).
+
 ## Requirements
 
 If the project maintainer has any additional requirements, you will find them listed here.
 
-- **[PSR-2 Coding Standard](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md)** - The easiest way to apply the conventions is to install [PHP Code Sniffer](https://pear.php.net/package/PHP_CodeSniffer).
+- **Code style** – This repository uses [Laravel Pint](https://laravel.com/docs/pint) with the rules in `pint.json`. Run `composer lint` before you commit.
 
 - **Add tests!** - Your patch won't be accepted if it doesn't have tests.
 
-- **Document any change in behaviour** - Make sure the `README.md` and any other relevant documentation are kept up-to-date.
+- **Document any change in behaviour** - Make sure the relevant pages in `docs/` are kept up to date.
 
 - **Consider our release cycle** - We try to follow [SemVer v2.0.0](https://semver.org/). Randomly breaking public APIs is not an option.
 
